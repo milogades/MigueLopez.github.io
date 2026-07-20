@@ -1,0 +1,96 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos generales del body */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f5;
+}
+
+/* Cabecera */
+header {
+    background-color: #1a1a1a;
+    color: white;
+    padding: 1rem 2rem; /*Si el usuario tiene problemas de vista y aumenta el tamaño de letra en el navegador, el rem se adapta.*/
+}
+
+nav {
+    display: flex;  /* lo hace flexible */
+    justify-content: space-between; /* Distribuye los elementos: uno a la izquierda y otro a la derecha (el logo a la izquierda y el menú a la derecha) */
+    align-items: center;
+    max-width: 1200px; /* El menú no se estira más de 1200px de ancho (se ve más limpio en pantallas grandes) */
+    margin: 0 auto; /* Centra el nav horizontalmente en la página */
+}
+
+nav div {
+    font-size: 1.5rem; /* lo hace más grande */
+    font-weight: bold;
+}
+
+nav ul {
+    list-style: none; /* quita los puntos (•) de la lista */
+    display: flex; /* pone los enlaces en horizontal */
+    gap: 1.5rem; /* pone un espacio de 1.5rem entre cada enlace */
+}
+
+nav a {
+    color: white;
+    text-decoration: none; /* quita el subrayado que tienen los enlaces por defecto */
+}
+
+nav a:hover {
+    color: #4da6ff; /* Cuando pasas el cursor por encima de un enlace, el color cambia a azul claro (#4da6ff) */
+}
+
+/*nav { ... }            El contenedor más externo */
+/* nav div { ... }       Elemento dentro del nav */
+/* nav ul { ... }        Otro elemento dentro del nav */
+/* nav a { ... }         El enlace (más interno) */
+/* nav a:hover { ... }   Estado especial del enlace */
+
+/* Secciones generales */
+section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+}
+
+/* Hero */
+#inicio {
+    background-color: #1a1a1a;
+    color: white;
+    text-align: center;
+    padding: 6rem 2rem;
+}
+
+#inicio h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+#inicio p {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Títulos de sección */
+h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* Footer */
+footer {
+    background-color: #1a1a1a;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 3rem;
+}
