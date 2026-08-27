@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Películas (API)</title>
+    <link rel="stylesheet" href="catalogo.css">
+</head>
+<body>
+    <header>
+        <h1>Catálogo de Películas</h1>
+        <p>Datos en vivo desde TMDB</p>
+    </header>
+    <main>
+        <section class="ranking">
+            <h2>Películas Populares</h2>
+            <div class="grid" id="populares"></div>
+        </section>
+        <section class="ranking">
+            <h2>Mejor Valoradas</h2>
+            <div class="grid" id="valoradas"></div>
+        </section>
+        <section class="ranking">
+            <h2>Próximos Estrenos</h2>
+            <div class="grid" id="estrenos"></div>
+        </section>
+    </main>
+    <script src="catalogo-api.js"></script>
+</body>
+</html>

@@ -5,161 +5,225 @@
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background-color: #f5f5f5;
+    font-family: Georgia, "Times New Roman", serif;
+    background: #fff;
+    color: #111;
+    line-height: 1.5;
 }
 
-header {
-    background-color: #1a1a1a;
-    color: white;
-    padding: 1rem 2rem;
-}
-
-nav {
+.barra {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem 2rem 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
+    border-bottom: 2px solid #111;
 }
 
-nav div {
-    font-size: 1.5rem;
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+    color: #111;
+}
+
+.logo-letra {
+    font-size: 3.5rem;
     font-weight: bold;
+    line-height: 0.8;
+}
+
+.logo-nombre {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
 }
 
 nav ul {
     list-style: none;
     display: flex;
-    gap: 1.5rem;
+    gap: 1.4rem;
 }
 
 nav a {
-    color: white;
     text-decoration: none;
+    color: #111;
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
 }
 
+nav a.activo,
 nav a:hover {
-    color: #4da6ff;
+    color: #e85d04;
 }
 
-section {
-    max-width: 1200px;
+.hero,
+.trabajos,
+#sobre-mi,
+#formacion,
+#contacto {
+    max-width: 1100px;
     margin: 0 auto;
     padding: 4rem 2rem;
 }
 
-#inicio {
-    background-color: #111;
-    color: white;
-    text-align: center;
-    padding: 8rem 2rem;
-    min-height: 80vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    max-width: none;
+.hero h1 {
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    font-weight: 500;
+    line-height: 1.25;
+    margin-bottom: 1.5rem;
 }
 
-#inicio h1 {
-    font-size: 3.8rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    letter-spacing: -1px;
+.naranja {
+    color: #e85d04;
 }
 
-#inicio p {
-    font-size: 1.25rem;
-    margin-bottom: 0.6rem;
-    opacity: 0.9;
-    max-width: 600px;
+.hero-texto {
+    color: #888;
+    font-size: 1.15rem;
 }
 
-#inicio .btn {
+.btn-contacto {
     display: inline-block;
-    margin-top: 2rem;
-    padding: 0.9rem 2.2rem;
-    background-color: #3b82f6;
-    color: white;
+    background: #e85d04;
+    color: #fff;
     text-decoration: none;
-    border-radius: 50px;
-    font-weight: 600;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    padding: 0.15rem 0.55rem;
+    border-radius: 6px;
 }
 
-#inicio .btn:hover {
-    background-color: #2563eb;
-    transform: translateY(-3px);
+.btn-contacto:hover {
+    background: #d9480f;
 }
 
-h2 {
+.trabajos h2,
+#sobre-mi h2,
+#formacion h2,
+#contacto h2 {
     font-size: 2rem;
-    margin-bottom: 2rem;
-    text-align: center;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
 }
 
-#habilidades > div,
-#proyectos > div,
-.proyecto-link div {
-    background-color: white;
-    padding: 1.8rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-#habilidades > div:hover,
-#proyectos > div:hover,
-.proyecto-link:hover div {
-    transform: translateY(-6px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
-}
-
-#habilidades h3,
-#proyectos h3,
-.proyecto-link h3 {
-    margin-bottom: 0.6rem;
-    color: #1a1a1a;
-}
-
-#habilidades p,
-#proyectos p,
-.proyecto-link p {
-    color: #555;
-    font-size: 0.95rem;
-}
-
-#habilidades,
-#proyectos {
+.grid-trabajos {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: 1fr;
     gap: 1.5rem;
 }
 
-#habilidades h2,
-#proyectos h2 {
-    grid-column: 1 / -1;
-}
-
-.proyecto-link {
+.tarjeta-link {
     text-decoration: none;
     color: inherit;
     display: block;
 }
 
-footer {
-    background-color: #1a1a1a;
-    color: white;
-    text-align: center;
-    padding: 2rem;
-    margin-top: 3rem;
+.tarjeta {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    padding-bottom: 1.2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-@media (max-width: 768px) {
-    nav {
+.tarjeta:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 35px rgba(0, 0, 0, 0.14);
+}
+
+.preview {
+    height: 220px;
+    margin: 0.8rem;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #f4f4f4;
+}
+
+.preview iframe {
+    width: 200%;
+    height: 400%;
+    border: none;
+    transform: scale(0.5);
+    transform-origin: top left;
+    pointer-events: none;
+}
+
+.etiqueta {
+    margin: 0.8rem 1.2rem 0.4rem;
+    background: #ecebff;
+    color: #5b5b7a;
+    font-size: 0.85rem;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0.35rem 0.8rem;
+    border-radius: 999px;
+}
+
+.tarjeta h3 {
+    margin: 0.4rem 1.2rem;
+    color: #e85d04;
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+
+.tecnologias {
+    margin: 0.2rem 1.2rem 0;
+    color: #888;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.95rem;
+}
+
+#sobre-mi p,
+#formacion p,
+#contacto p {
+    color: #444;
+}
+
+footer {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid #ddd;
+    color: #777;
+}
+
+.caja-filtros {
+    background: #fff4ed;
+    border-radius: 18px;
+    padding: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+}
+
+.filtro {
+    background: transparent;
+    border: 2px solid #e85d04;
+    color: #e85d04;
+    padding: 0.45rem 1.1rem;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+.filtro.activo,
+.filtro:hover {
+    background: #e85d04;
+    color: #fff;
+}
+
+.contador {
+    text-align: right;
+    color: #e85d04;
+    margin-top: 0.8rem;
+    font-style: italic;
+}
+
+@media (max-width: 800px) {
+    .barra {
         flex-direction: column;
         gap: 1rem;
     }
@@ -167,9 +231,5 @@ footer {
     nav ul {
         flex-wrap: wrap;
         justify-content: center;
-    }
-
-    #inicio h1 {
-        font-size: 2.4rem;
     }
 }
