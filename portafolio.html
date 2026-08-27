@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio | Miguel López León</title>
+    <title>Portafolio | Miguel López León</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -16,8 +16,8 @@
             </a>
             <nav>
                 <ul>
-                    <li><a href="index.html" class="activo">INICIO</a></li>
-                    <li><a href="portafolio.html">PORTAFOLIO</a></li>
+                    <li><a href="index.html">INICIO</a></li>
+                    <li><a href="portafolio.html" class="activo">PORTAFOLIO</a></li>
                     <li><a href="sobre-mi.html">SOBRE MÍ</a></li>
                     <li><a href="formacion.html">FORMACIÓN</a></li>
                     <li><a href="contacto.html">CONTACTO</a></li>
@@ -27,23 +27,19 @@
     </header>
 
     <main>
-        <section class="hero">
-            <h1>
-                Soy <span class="naranja">Miguel López León</span>, bienvenid@ a mi portafolio.
-                Aquí encontrarás información sobre mis proyectos y formación en
-                <span class="naranja">desarrollo web</span>.
-            </h1>
-            <p class="hero-texto">
-                Explora y no dudes en
-                <a href="contacto.html" class="btn-contacto">contactarme</a>
-                para más información.
-            </p>
-        </section>
-
         <section class="trabajos">
             <h2>Estos son algunos de mis trabajos programando</h2>
+            <div class="caja-filtros">
+                <div class="filtros">
+                    <button class="filtro activo" data-filtro="todos">Todos</button>
+                    <button class="filtro" data-filtro="html">HTML</button>
+                    <button class="filtro" data-filtro="css">CSS</button>
+                    <button class="filtro" data-filtro="javascript">JavaScript</button>
+                </div>
+                <p class="contador">2 proyectos encontrados</p>
+            </div>
             <div class="grid-trabajos">
-                <a href="catalogo.html" class="tarjeta-link">
+                <a href="catalogo.html" class="tarjeta-link" data-tech="html css">
                     <article class="tarjeta">
                         <div class="preview">
                             <iframe src="catalogo.html" title="Vista previa catálogo manual"></iframe>
@@ -53,7 +49,7 @@
                         <p class="tecnologias">HTML + CSS</p>
                     </article>
                 </a>
-                <a href="catalogo-api.html" class="tarjeta-link">
+                <a href="catalogo-api.html" class="tarjeta-link" data-tech="html css javascript">
                     <article class="tarjeta">
                         <div class="preview">
                             <iframe src="catalogo-api.html" title="Vista previa catálogo API"></iframe>
@@ -71,5 +67,6 @@
         <p>© 2026 Miguel López León · Cádiz</p>
     </footer>
 
+    <script src="filtros.js"></script>
 </body>
 </html>
