@@ -5,9 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacto | Miguel López León</title>
     <link rel="stylesheet" href="styles.css">
+    <script>
+        if (localStorage.getItem("tema") === "oscuro") {
+            document.documentElement.classList.add("oscuro");
+        }
+    </script>
 </head>
 <body>
-
     <header>
         <div class="barra">
             <a href="index.html" class="logo">
@@ -16,53 +20,45 @@
             </a>
             <nav>
                 <ul>
-                    <li><a href="index.html">INICIO</a></li>
-                    <li><a href="portafolio.html">PORTAFOLIO</a></li>
-                    <li><a href="curriculum.html">CURRICULUM</a></li>
-                    <li><a href="formacion.html">FORMACIÓN</a></li>
-                    <li><a href="contacto.html" class="activo">CONTACTO</a></li>
+                    <li><a href="index.html" data-i18n="nav-inicio">INICIO</a></li>
+                    <li><a href="portafolio.html" data-i18n="nav-portafolio">PORTAFOLIO</a></li>
+                    <li><a href="curriculum.html" data-i18n="nav-curriculum">CURRICULUM</a></li>
+                    <li><a href="contacto.html" class="activo" data-i18n="nav-contacto">CONTACTO</a></li>
                 </ul>
             </nav>
+            <div class="utiles">
+                <button type="button" class="btn-util" id="btn-idioma">ES</button>
+                <button type="button" class="btn-util" id="btn-tema">☾</button>
+            </div>
         </div>
     </header>
-
     <main>
         <section id="contacto" class="contacto">
-            <h2>Contacto</h2>
-
+            <h2 data-i18n="contacto-titulo">Contacto</h2>
             <div class="contacto-grid">
-
                 <form class="formulario" action="mailto:milo.gadir@gmail.com" method="post" enctype="text/plain">
-                    <input type="text" name="nombre" placeholder="Nombre" required>
-                    <input type="text" name="apellidos" placeholder="Apellidos">
-                    <input type="email" name="email" placeholder="Email" required>
-                    <input type="tel" name="telefono" placeholder="Teléfono">
-                    <textarea name="motivo" rows="6" placeholder="Motivo de contacto" required></textarea>
-                    <button type="submit">Enviar</button>
+                    <input type="text" name="nombre" data-i18n-ph="ph-nombre" placeholder="Nombre" required>
+                    <input type="text" name="apellidos" data-i18n-ph="ph-apellidos" placeholder="Apellidos">
+                    <input type="email" name="email" data-i18n-ph="ph-email" placeholder="Email" required>
+                    <input type="tel" name="telefono" data-i18n-ph="ph-telefono" placeholder="Teléfono">
+                    <textarea name="motivo" rows="6" data-i18n-ph="ph-motivo" placeholder="Motivo de contacto" required></textarea>
+                    <button type="submit" data-i18n="enviar">Enviar</button>
                 </form>
-
                 <aside class="contacto-info">
-                    <h3>Sígueme en redes</h3>
-                    <p>
-                        <a href="https://linkedin.com/in/miguel-lópez-león-2a3794136/" target="_blank">LinkedIn</a>
-                    </p>
-                    <p>
-                        <a href="https://github.com/milogades" target="_blank">GitHub</a>
-                    </p>
-
-                    <h3>Información de contacto</h3>
+                    <h3 data-i18n="redes">Sígueme en redes</h3>
+                    <p><a href="https://linkedin.com/in/miguel-lópez-león-2a3794136/" target="_blank">LinkedIn</a></p>
+                    <p><a href="https://github.com/milogades" target="_blank">GitHub</a></p>
+                    <h3 data-i18n="info">Información de contacto</h3>
                     <p><a href="mailto:milo.gadir@gmail.com">milo.gadir@gmail.com</a></p>
                     <p><a href="tel:+34670104201">+34 670 104 201</a></p>
-                    <p>Busco prácticas FCT telemáticas para octubre 2026.</p>
+                    <p data-i18n="fct">Busco prácticas FCT telemáticas para octubre 2026.</p>
                 </aside>
-
             </div>
         </section>
     </main>
-
     <footer>
         <p>© 2026 Miguel López León · Cádiz</p>
     </footer>
-
+    <script src="extra.js"></script>
 </body>
 </html>

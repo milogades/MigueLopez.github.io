@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap");
+
 * {
     margin: 0;
     padding: 0;
@@ -23,26 +25,32 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: none;
 }
 
 .logo {
     display: flex;
-    align-items: center;
-    gap: 0.6rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.15rem;
     text-decoration: none;
     color: #111;
 }
 
 .logo-letra {
-    font-size: 3.5rem;
-    font-weight: bold;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 3.6rem;
+    font-weight: 700;
     line-height: 0.8;
+    letter-spacing: -0.04em;
 }
 
 .logo-nombre {
-    font-size: 0.75rem;
-    letter-spacing: 0.08em;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.16em;
+    line-height: 1.2;
+    text-transform: uppercase;
+    white-space: nowrap;
 }
 
 nav ul {
@@ -54,19 +62,19 @@ nav ul {
 nav a {
     text-decoration: none;
     color: #111;
-    font-size: 0.85rem;
+    font-size: 0.95rem;
+    font-weight: 700;
     letter-spacing: 0.06em;
 }
 
 nav a.activo,
 nav a:hover {
-    color: #e85d04;
+    color: #0f766e;
 }
 
 .hero,
 .trabajos,
 #curriculum,
-#formacion,
 #contacto {
     width: 100%;
     max-width: none;
@@ -82,7 +90,7 @@ nav a:hover {
 }
 
 .naranja {
-    color: #e85d04;
+    color: #0f766e;
 }
 
 .hero-texto {
@@ -92,7 +100,7 @@ nav a:hover {
 
 .btn-contacto {
     display: inline-block;
-    background: #e85d04;
+    background: #0f766e;
     color: #fff;
     text-decoration: none;
     padding: 0.15rem 0.55rem;
@@ -100,12 +108,11 @@ nav a:hover {
 }
 
 .btn-contacto:hover {
-    background: #d9480f;
+    background: #115e59;
 }
 
 .trabajos h2,
 #curriculum h2,
-#formacion h2,
 #contacto h2 {
     font-size: 2rem;
     font-weight: 500;
@@ -161,8 +168,8 @@ nav a:hover {
 
 .etiqueta {
     margin: 0.8rem 1.2rem 0.4rem;
-    background: #ecebff;
-    color: #5b5b7a;
+    background: #ccfbf1;
+    color: #115e59;
     font-size: 0.85rem;
     font-family: Arial, Helvetica, sans-serif;
     padding: 0.35rem 0.8rem;
@@ -171,7 +178,7 @@ nav a:hover {
 
 .tarjeta h3 {
     margin: 0.4rem 1.2rem;
-    color: #e85d04;
+    color: #0f766e;
     font-size: 1.4rem;
     font-weight: 500;
 }
@@ -184,7 +191,6 @@ nav a:hover {
 }
 
 #curriculum p,
-#formacion p,
 #contacto p {
     color: #444;
 }
@@ -197,7 +203,7 @@ footer {
 }
 
 .caja-filtros {
-    background: #fff4ed;
+    background: #f0fdfa;
     border-radius: 18px;
     padding: 1.2rem;
     margin-bottom: 2rem;
@@ -211,8 +217,8 @@ footer {
 
 .filtro {
     background: transparent;
-    border: 2px solid #e85d04;
-    color: #e85d04;
+    border: 2px solid #0f766e;
+    color: #0f766e;
     padding: 0.45rem 1.1rem;
     border-radius: 999px;
     cursor: pointer;
@@ -221,13 +227,13 @@ footer {
 
 .filtro.activo,
 .filtro:hover {
-    background: #e85d04;
+    background: #0f766e;
     color: #fff;
 }
 
 .contador {
     text-align: right;
-    color: #e85d04;
+    color: #0f766e;
     margin-top: 0.8rem;
     font-style: italic;
 }
@@ -251,18 +257,18 @@ footer {
     font-size: 1rem;
     padding: 0.9rem 1rem;
     border: 1px solid #ddd;
-    border-left: 4px solid #e85d04;
+    border-left: 4px solid #0f766e;
     border-radius: 4px;
     outline: none;
 }
 
 .formulario input:focus,
 .formulario textarea:focus {
-    border-color: #e85d04;
+    border-color: #0f766e;
 }
 
 .formulario button {
-    background: #e85d04;
+    background: #0f766e;
     color: #fff;
     border: none;
     padding: 0.9rem;
@@ -272,7 +278,7 @@ footer {
 }
 
 .formulario button:hover {
-    background: #d9480f;
+    background: #115e59;
 }
 
 .contacto-info {
@@ -284,7 +290,7 @@ footer {
 .contacto-info h3 {
     margin-bottom: 0.4rem;
     padding-bottom: 0.5rem;
-    border-bottom: 2px solid #e85d04;
+    border-bottom: 2px solid #0f766e;
 }
 
 .contacto-info h3:not(:first-child) {
@@ -301,7 +307,116 @@ footer {
 }
 
 .contacto-info a:hover {
-    color: #e85d04;
+    color: #0f766e;
+}
+
+.utiles {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-util {
+    min-width: 42px;
+    height: 36px;
+    padding: 0 0.7rem;
+    border: 1px solid #111;
+    background: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.85rem;
+}
+
+.btn-util:hover {
+    color: #0f766e;
+    border-color: #0f766e;
+}
+
+html.oscuro {
+    background: #111;
+}
+
+html.oscuro body {
+    background: #111;
+    color: #eee;
+}
+
+html.oscuro header {
+    border-bottom-color: #333;
+}
+
+html.oscuro .logo,
+html.oscuro nav a {
+    color: #eee;
+}
+
+html.oscuro nav a.activo,
+html.oscuro nav a:hover {
+    color: #2dd4bf;
+}
+
+html.oscuro .naranja,
+html.oscuro .tarjeta h3,
+html.oscuro .contador,
+html.oscuro .contacto-info a:hover {
+    color: #2dd4bf;
+}
+
+html.oscuro .hero-texto {
+    color: #aaa;
+}
+
+html.oscuro .btn-contacto,
+html.oscuro .formulario button,
+html.oscuro .filtro.activo,
+html.oscuro .filtro:hover {
+    background: #0f766e;
+    color: #fff;
+}
+
+html.oscuro .btn-contacto:hover,
+html.oscuro .formulario button:hover {
+    background: #115e59;
+}
+
+html.oscuro .tarjeta {
+    background: #1a1a1a;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+html.oscuro .caja-filtros,
+html.oscuro .contacto-info {
+    background: #1a1a1a;
+}
+
+html.oscuro .filtro {
+    border-color: #2dd4bf;
+    color: #2dd4bf;
+}
+
+html.oscuro .etiqueta {
+    background: #115e59;
+    color: #ccfbf1;
+}
+
+html.oscuro .formulario input,
+html.oscuro .formulario textarea {
+    background: #1a1a1a;
+    color: #eee;
+    border-color: #333;
+    border-left-color: #0f766e;
+}
+
+html.oscuro .btn-util {
+    background: #1a1a1a;
+    color: #eee;
+    border-color: #555;
+}
+
+html.oscuro footer {
+    border-top-color: #333;
+    color: #888;
 }
 
 @media (max-width: 800px) {
@@ -321,5 +436,9 @@ footer {
 
     .contacto-grid {
         grid-template-columns: 1fr;
+    }
+
+    .utiles {
+        justify-content: center;
     }
 }

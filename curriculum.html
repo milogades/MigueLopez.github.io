@@ -5,9 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Curriculum | Miguel López León</title>
     <link rel="stylesheet" href="styles.css">
+    <script>
+        if (localStorage.getItem("tema") === "oscuro") {
+            document.documentElement.classList.add("oscuro");
+        }
+    </script>
 </head>
 <body>
-
     <header>
         <div class="barra">
             <a href="index.html" class="logo">
@@ -16,26 +20,27 @@
             </a>
             <nav>
                 <ul>
-                    <li><a href="index.html">INICIO</a></li>
-                    <li><a href="portafolio.html">PORTAFOLIO</a></li>
-                    <li><a href="curriculum.html" class="activo">CURRICULUM</a></li>
-                    <li><a href="formacion.html">FORMACIÓN</a></li>
-                    <li><a href="contacto.html">CONTACTO</a></li>
+                    <li><a href="index.html" data-i18n="nav-inicio">INICIO</a></li>
+                    <li><a href="portafolio.html" data-i18n="nav-portafolio">PORTAFOLIO</a></li>
+                    <li><a href="curriculum.html" class="activo" data-i18n="nav-curriculum">CURRICULUM</a></li>
+                    <li><a href="contacto.html" data-i18n="nav-contacto">CONTACTO</a></li>
                 </ul>
             </nav>
+            <div class="utiles">
+                <button type="button" class="btn-util" id="btn-idioma">ES</button>
+                <button type="button" class="btn-util" id="btn-tema">☾</button>
+            </div>
         </div>
     </header>
-
     <main>
         <section id="curriculum">
-            <h2>Curriculum</h2>
-            <p>Soy Miguel, desarrollador web en formación con base en telecomunicaciones. Apasionado por el código, el aprendizaje y la constancia.</p>
+            <h2 data-i18n="cv-titulo">Curriculum</h2>
+            <p data-i18n="cv-texto">Soy Miguel, desarrollador web en formación con base en telecomunicaciones. Apasionado por el código, el aprendizaje y la constancia.</p>
         </section>
     </main>
-
     <footer>
         <p>© 2026 Miguel López León · Cádiz</p>
     </footer>
-
+    <script src="extra.js"></script>
 </body>
 </html>
