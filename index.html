@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio | Miguel López León</title>
     <link rel="stylesheet" href="styles.css">
+    <script>
+        if (localStorage.getItem("tema") === "oscuro") {
+            document.documentElement.classList.add("oscuro");
+        }
+    </script>
 </head>
 <body>
 
@@ -16,34 +21,36 @@
             </a>
             <nav>
                 <ul>
-                    <li><a href="index.html" class="activo">INICIO</a></li>
-                    <li><a href="portafolio.html">PORTAFOLIO</a></li>
-                    <li><a href="curriculum.html">CURRICULUM</a></li>
-                    <li><a href="formacion.html">FORMACIÓN</a></li>
-                    <li><a href="contacto.html">CONTACTO</a></li>
+                    <li><a href="index.html" class="activo" data-i18n="nav-inicio">INICIO</a></li>
+                    <li><a href="portafolio.html" data-i18n="nav-portafolio">PORTAFOLIO</a></li>
+                    <li><a href="curriculum.html" data-i18n="nav-curriculum">CURRICULUM</a></li>
+                    <li><a href="contacto.html" data-i18n="nav-contacto">CONTACTO</a></li>
                 </ul>
             </nav>
+            <div class="utiles">
+                <button type="button" class="btn-util" id="btn-idioma">ES</button>
+                <button type="button" class="btn-util" id="btn-tema">☾</button>
+            </div>
         </div>
     </header>
 
     <main>
         <section class="hero">
             <h1>
-                Soy <span class="naranja">Miguel López León</span>, bienvenid@ a mi portafolio.
-                Aquí encontrarás información sobre mis proyectos y formación en
-                <span class="naranja">desarrollo web</span>.
+                <span data-i18n="hero-1">Soy</span>
+                <span class="naranja">Miguel López León</span><span data-i18n="hero-2">, estudiante de Desarrollo de Aplicaciones Web (DAW). Aquí encontrarás mis proyectos y mi formación en</span>
+                <span class="naranja" data-i18n="hero-3">desarrollo web</span>.
             </h1>
             <p class="hero-texto">
-                Explora y no dudes en
-                <a href="contacto.html" class="btn-contacto">contactarme</a>
-                para más información.
+                <span data-i18n="hero-4">Explora y no dudes en</span>
+                <a href="contacto.html" class="btn-contacto" data-i18n="hero-btn">contactarme</a>
+                <span data-i18n="hero-5">para más información.</span>
             </p>
         </section>
 
         <section class="trabajos">
-            <h2>Estos son algunos de mis trabajos programando</h2>
+            <h2 data-i18n="trabajos">Estos son algunos de mis proyectos</h2>
             <div class="grid-trabajos grid-dos">
-
                 <a href="catalogo.html" class="tarjeta-link">
                     <article class="tarjeta">
                         <div class="preview">
@@ -54,7 +61,6 @@
                         <p class="tecnologias">HTML + CSS</p>
                     </article>
                 </a>
-
                 <a href="catalogo-api.html" class="tarjeta-link">
                     <article class="tarjeta">
                         <div class="preview">
@@ -65,7 +71,6 @@
                         <p class="tecnologias">HTML + CSS + JavaScript</p>
                     </article>
                 </a>
-
             </div>
         </section>
     </main>
@@ -74,5 +79,6 @@
         <p>© 2026 Miguel López León · Cádiz</p>
     </footer>
 
+    <script src="extra.js"></script>
 </body>
 </html>
