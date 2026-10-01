@@ -88,3 +88,13 @@ header p {
     color: #16a34a;
     font-size: 1.1rem;
 }
+
+/* Aviso cuando la API no responde */
+.error {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 1rem 1.2rem;
+    border-left: 4px solid #b91c1c;
+    background: #fef2f2;
+    color: #7f1d1d;
+}

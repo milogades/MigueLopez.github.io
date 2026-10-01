@@ -12,7 +12,8 @@ const textos = {
         "hero-5": "para más información.",
         "trabajos": "Estos son algunos de mis proyectos",
         "filtro-todos": "Todos",
-        "contador": "2 proyectos encontrados",
+        "proyecto-1": "proyecto encontrado",
+        "proyecto-n": "proyectos encontrados",
         "cv-titulo": "Curriculum",
         "cv-texto": "Soy Miguel, desarrollador web en formación con base en telecomunicaciones. Apasionado por el código, el aprendizaje y la constancia.",
         "contacto-titulo": "Contacto",
@@ -25,7 +26,10 @@ const textos = {
         "redes": "Sígueme en redes",
         "info": "Información de contacto",
         "fct": "Busco prácticas FCT telemáticas para octubre 2026.",
-        "idioma": "ES"
+        "idioma": "ES",
+        "cambiar-idioma": "Cambiar idioma a inglés",
+        "tema-oscuro": "Activar modo oscuro",
+        "tema-claro": "Activar modo claro"
     },
     en: {
         "nav-inicio": "HOME",
@@ -40,7 +44,8 @@ const textos = {
         "hero-5": "for more information.",
         "trabajos": "Some of my projects",
         "filtro-todos": "All",
-        "contador": "2 projects found",
+        "proyecto-1": "project found",
+        "proyecto-n": "projects found",
         "cv-titulo": "Resume",
         "cv-texto": "I'm Miguel, a web developer in training with a background in telecommunications. Passionate about code, learning and consistency.",
         "contacto-titulo": "Contact",
@@ -53,32 +58,70 @@ const textos = {
         "redes": "Follow me",
         "info": "Contact details",
         "fct": "Looking for remote FCT internship starting October 2026.",
-        "idioma": "EN"
+        "idioma": "EN",
+        "cambiar-idioma": "Switch language to Spanish",
+        "tema-oscuro": "Turn on dark mode",
+        "tema-claro": "Turn on light mode"
     }
 };
 
+function idiomaActual() {
+    return localStorage.getItem("idioma") || "es";
+}
+
 function aplicarTema() {
     const oscuro = localStorage.getItem("tema") === "oscuro";
+    const t = textos[idiomaActual()];
     document.documentElement.classList.toggle("oscuro", oscuro);
+
     const boton = document.getElementById("btn-tema");
-    if (boton) boton.textContent = oscuro ? "☀" : "☾";
+    if (boton) {
+        boton.textContent = oscuro ? "☀" : "☾";
+        boton.setAttribute("aria-label", oscuro ? t["tema-claro"] : t["tema-oscuro"]);
+    }
+}
+
+// Cuenta las tarjetas visibles y escribe el texto en el idioma actual.
+// Lo usan filtros.js (al pulsar un filtro) y aplicarIdioma (al cambiar idioma).
+function actualizarContador() {
+    const contador = document.querySelector(".contador");
+    if (!contador) return;
+
+    const tarjetas = document.querySelectorAll(".tarjeta-link");
+    let visibles = 0;
+    tarjetas.forEach((tarjeta) => {
+        if (tarjeta.style.display !== "none") visibles++;
+    });
+
+    const t = textos[idiomaActual()];
+    const texto = visibles === 1 ? t["proyecto-1"] : t["proyecto-n"];
+    contador.textContent = visibles + " " + texto;
 }
 
 function aplicarIdioma() {
-    const idioma = localStorage.getItem("idioma") || "es";
+    const idioma = idiomaActual();
+    const t = textos[idioma];
+
+    document.documentElement.lang = idioma;
 
     document.querySelectorAll("[data-i18n]").forEach((el) => {
         const clave = el.dataset.i18n;
-        if (textos[idioma][clave]) el.textContent = textos[idioma][clave];
+        if (t[clave]) el.textContent = t[clave];
     });
 
     document.querySelectorAll("[data-i18n-ph]").forEach((el) => {
         const clave = el.dataset.i18nPh;
-        if (textos[idioma][clave]) el.placeholder = textos[idioma][clave];
+        if (t[clave]) el.placeholder = t[clave];
     });
 
     const boton = document.getElementById("btn-idioma");
-    if (boton) boton.textContent = textos[idioma].idioma;
+    if (boton) {
+        boton.textContent = t.idioma;
+        boton.setAttribute("aria-label", t["cambiar-idioma"]);
+    }
+
+    aplicarTema();
+    actualizarContador();
 }
 
 document.getElementById("btn-tema")?.addEventListener("click", () => {
@@ -88,10 +131,9 @@ document.getElementById("btn-tema")?.addEventListener("click", () => {
 });
 
 document.getElementById("btn-idioma")?.addEventListener("click", () => {
-    const idioma = localStorage.getItem("idioma") === "en" ? "es" : "en";
+    const idioma = idiomaActual() === "en" ? "es" : "en";
     localStorage.setItem("idioma", idioma);
     aplicarIdioma();
 });
 
-aplicarTema();
 aplicarIdioma();
