@@ -36,12 +36,27 @@
         <section id="contacto" class="contacto">
             <h2 data-i18n="contacto-titulo">Contacto</h2>
             <div class="contacto-grid">
-                <form class="formulario" action="mailto:milo.gadir@gmail.com" method="post" enctype="text/plain">
-                    <input type="text" name="nombre" data-i18n-ph="ph-nombre" placeholder="Nombre" required>
-                    <input type="text" name="apellidos" data-i18n-ph="ph-apellidos" placeholder="Apellidos">
-                    <input type="email" name="email" data-i18n-ph="ph-email" placeholder="Email" required>
-                    <input type="tel" name="telefono" data-i18n-ph="ph-telefono" placeholder="Teléfono">
-                    <textarea name="motivo" rows="6" data-i18n-ph="ph-motivo" placeholder="Motivo de contacto" required></textarea>
+                <form class="formulario" id="formulario">
+                    <input type="hidden" name="access_key" value="bca43740-280f-452f-8e78-7fd8f1b93608">
+                    <input type="hidden" name="subject" value="Nuevo mensaje desde el portafolio">
+                    <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+
+                    <label for="nombre" data-i18n="ph-nombre">Nombre</label>
+                    <input type="text" id="nombre" name="name" data-i18n-ph="ph-nombre" placeholder="Nombre" required>
+
+                    <label for="apellidos" data-i18n="ph-apellidos">Apellidos</label>
+                    <input type="text" id="apellidos" name="apellidos" data-i18n-ph="ph-apellidos" placeholder="Apellidos">
+
+                    <label for="email" data-i18n="ph-email">Email</label>
+                    <input type="email" id="email" name="email" data-i18n-ph="ph-email" placeholder="Email" required>
+
+                    <label for="telefono" data-i18n="ph-telefono">Teléfono</label>
+                    <input type="tel" id="telefono" name="telefono" data-i18n-ph="ph-telefono" placeholder="Teléfono">
+
+                    <label for="motivo" data-i18n="ph-motivo">Motivo de contacto</label>
+                    <textarea id="motivo" name="message" rows="6" data-i18n-ph="ph-motivo" placeholder="Motivo de contacto" required></textarea>
+
+                    <p class="estado-form" id="estado-form" aria-live="polite"></p>
                     <button type="submit" data-i18n="enviar">Enviar</button>
                 </form>
                 <aside class="contacto-info">

@@ -23,6 +23,9 @@ const textos = {
         "ph-telefono": "Teléfono",
         "ph-motivo": "Motivo de contacto",
         "enviar": "Enviar",
+        "enviando": "Enviando...",
+        "enviado": "Mensaje enviado. Te responderé pronto.",
+        "error-envio": "No se ha podido enviar. Escríbeme a milo.gadir@gmail.com.",
         "redes": "Sígueme en redes",
         "info": "Información de contacto",
         "idioma": "ES",
@@ -54,6 +57,9 @@ const textos = {
         "ph-telefono": "Phone",
         "ph-motivo": "Message",
         "enviar": "Send",
+        "enviando": "Sending...",
+        "enviado": "Message sent. I'll reply soon.",
+        "error-envio": "Could not send. Email me at milo.gadir@gmail.com.",
         "redes": "Follow me",
         "info": "Contact details",
         "idioma": "EN",
@@ -74,13 +80,11 @@ function aplicarTema() {
 
     const boton = document.getElementById("btn-tema");
     if (boton) {
-        boton.textContent = oscuro ? "☀" : "☾";
+        boton.textContent = oscuro ? "\u2600" : "\u263e";
         boton.setAttribute("aria-label", oscuro ? t["tema-claro"] : t["tema-oscuro"]);
     }
 }
 
-// Cuenta las tarjetas visibles y escribe el texto en el idioma actual.
-// Lo usan filtros.js (al pulsar un filtro) y aplicarIdioma (al cambiar idioma).
 function actualizarContador() {
     const contador = document.querySelector(".contador");
     if (!contador) return;
@@ -133,5 +137,36 @@ document.getElementById("btn-idioma")?.addEventListener("click", () => {
     localStorage.setItem("idioma", idioma);
     aplicarIdioma();
 });
+
+const formulario = document.getElementById("formulario");
+if (formulario) {
+    formulario.addEventListener("submit", async (evento) => {
+        evento.preventDefault();
+
+        const estado = document.getElementById("estado-form");
+        const boton = formulario.querySelector("button");
+        const t = textos[idiomaActual()];
+
+        boton.disabled = true;
+        estado.textContent = t.enviando;
+
+        try {
+            const respuesta = await fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                body: new FormData(formulario)
+            });
+            const datos = await respuesta.json();
+            if (!respuesta.ok || !datos.success) {
+                throw new Error(datos.message || "error");
+            }
+            estado.textContent = t.enviado;
+            formulario.reset();
+        } catch (error) {
+            estado.textContent = t["error-envio"];
+        }
+
+        boton.disabled = false;
+    });
+}
 
 aplicarIdioma();
