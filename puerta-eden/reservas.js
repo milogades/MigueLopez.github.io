@@ -94,6 +94,11 @@
       if (error) throw new Error("No se pudo guardar el cambio.");
     },
 
+    // Solo modo demo: borra las reservas de prueba de este dispositivo
+    vaciarDemo() {
+      if (DEMO) { try { localStorage.removeItem(CLAVE_DEMO); } catch (e) { /* bloqueado */ } }
+    },
+
     // Panel: sesión del restaurante
     async sesion() {
       if (DEMO) return { demo: true };

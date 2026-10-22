@@ -53,6 +53,7 @@
     .login form { display: grid; gap: 10px; }
     .login input { padding: 12px; border: 1px solid var(--line); border-radius: 8px; font: inherit; background: #fff; }
     .login button { background: var(--navy); color: #fff; border: 0; border-radius: 8px; padding: 12px; font-weight: 600; }
+    .vaciar { margin-left: 6px; background: #fff; border: 1px solid #e0c27a; color: #6b4a00; border-radius: 999px; padding: 3px 10px; font-size: 12px; font-weight: 600; }
     [hidden] { display: none !important; }
     .toast { position: fixed; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--navy); color: #fff; padding: 10px 16px; border-radius: 999px; box-shadow: 0 6px 18px rgba(0,0,0,.25); font-weight: 600; z-index: 20; }
   </style>
@@ -64,7 +65,7 @@
     <button class="icon-btn" id="btnAvisos" type="button" title="Sonido al entrar una reserva">🔕 Avisos</button>
     <button class="icon-btn" id="btnSalir" type="button" hidden>Salir</button>
   </header>
-  <div class="demo" id="demoBar" hidden>Modo demo: las reservas se guardan solo en este dispositivo.</div>
+  <div class="demo" id="demoBar" hidden>Modo demo: las reservas se guardan solo en este dispositivo. <button type="button" id="btnVaciar" class="vaciar">🗑 Borrar reservas de prueba</button></div>
 
   <section class="login" id="vLogin" hidden>
     <h2>Acceso restaurante</h2>
@@ -222,6 +223,11 @@
       $("#loginErr").textContent = "";
       try { await Reservas.entrar(d.email, d.password); mostrarPanel(); }
       catch (err) { $("#loginErr").textContent = err.message; }
+    });
+
+    $("#btnVaciar").addEventListener("click", async () => {
+      if (!confirm("¿Borrar todas las reservas de prueba de este dispositivo?")) return;
+      Reservas.vaciarDemo(); pendientesAntes = null; await cargar(); toast("Reservas de prueba borradas");
     });
 
     $("#btnSalir").addEventListener("click", async () => { await Reservas.salir(); location.reload(); });
