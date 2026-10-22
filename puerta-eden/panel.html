@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Reservas · Puerta del Edén</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root { --navy: #1e2a46; --deep: #141c30; --gold: #c9a45c; --bg: #f4efe6; --paper: #fffaf3; --line: #e4d8c6; --ink: #1f1710; --muted: #6a5d50;
+      --pend: #b26b00; --pend-bg: #fff3d6; --ok: #1b7a43; --ok-bg: #e3f5ea; --no: #8a8a8a; --no-bg: #eeeeee; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Source Sans 3", system-ui, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.45; min-height: 100vh; }
+    button { font: inherit; cursor: pointer; }
+    .top { background: var(--navy); color: #fff; padding: 10px 14px; padding-top: calc(10px + env(safe-area-inset-top, 0px)); display: flex; align-items: center; gap: 10px; position: sticky; top: 0; z-index: 10; border-bottom: 3px solid var(--gold); }
+    .top img { width: 40px; height: 40px; border-radius: 8px; object-fit: cover; }
+    .top h1 { font-family: "Cormorant Garamond", Georgia, serif; font-size: 22px; font-weight: 600; flex: 1; line-height: 1.1; }
+    .top h1 small { display: block; font-family: "Source Sans 3", sans-serif; font-size: 12px; color: var(--gold); letter-spacing: .08em; text-transform: uppercase; }
+    .top .icon-btn { background: transparent; border: 1px solid rgba(255,255,255,.35); color: #fff; border-radius: 8px; padding: 6px 10px; font-size: 14px; }
+    .demo { background: #fff3d6; color: #6b4a00; font-size: 13px; text-align: center; padding: 8px 12px; }
+    .wrap { max-width: 720px; margin: 0 auto; padding: 14px; }
+    .tabs { display: flex; gap: 6px; margin-bottom: 12px; }
+    .tab { flex: 1; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 6px; font-weight: 600; color: var(--muted); }
+    .tab.on { background: var(--navy); color: #fff; border-color: var(--navy); box-shadow: inset 0 0 0 1px var(--gold); }
+    .tab .n { display: inline-block; min-width: 20px; padding: 0 6px; border-radius: 999px; background: var(--pend); color: #fff; font-size: 12px; margin-left: 4px; }
+    .tab .n:empty { display: none; }
+    .day { font-family: "Cormorant Garamond", Georgia, serif; font-size: 21px; color: var(--navy); margin: 16px 2px 8px; display: flex; justify-content: space-between; align-items: baseline; }
+    .day span { font-family: "Source Sans 3", sans-serif; font-size: 13px; color: var(--muted); }
+    .res { background: #fff; border: 1px solid var(--line); border-left: 5px solid var(--pend); border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; }
+    .res.confirmada { border-left-color: var(--ok); }
+    .res.rechazada { border-left-color: var(--no); opacity: .65; }
+    .row { display: flex; align-items: center; gap: 10px; }
+    .hora { font-size: 24px; font-weight: 700; color: var(--navy); min-width: 64px; }
+    .who { flex: 1; min-width: 0; }
+    .who b { display: block; font-size: 17px; overflow-wrap: anywhere; }
+    .who small { color: var(--muted); font-size: 14px; }
+    .est { font-size: 12px; font-weight: 700; padding: 3px 8px; border-radius: 999px; text-transform: uppercase; letter-spacing: .04em; white-space: nowrap; }
+    .est.pendiente { background: var(--pend-bg); color: var(--pend); }
+    .est.confirmada { background: var(--ok-bg); color: var(--ok); }
+    .est.rechazada { background: var(--no-bg); color: #555; }
+    .nota { margin-top: 8px; background: var(--paper); border-radius: 8px; padding: 6px 10px; font-size: 14px; overflow-wrap: anywhere; }
+    .acts { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+    .acts button, .acts a { flex: 1 1 auto; text-align: center; text-decoration: none; border-radius: 8px; padding: 9px 10px; font-weight: 600; font-size: 14px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); }
+    .acts .si { background: var(--ok); border-color: var(--ok); color: #fff; }
+    .acts .no { color: #b42318; }
+    .empty { text-align: center; color: var(--muted); padding: 40px 10px; }
+    .err { background: #fde8e7; color: #b42318; border-radius: 8px; padding: 10px; margin-bottom: 10px; }
+    .err:empty { display: none; }
+    /* login */
+    .login { max-width: 360px; margin: 40px auto; background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 22px; }
+    .login h2 { font-family: "Cormorant Garamond", Georgia, serif; color: var(--navy); font-size: 26px; margin-bottom: 12px; }
+    .login form { display: grid; gap: 10px; }
+    .login input { padding: 12px; border: 1px solid var(--line); border-radius: 8px; font: inherit; background: #fff; }
+    .login button { background: var(--navy); color: #fff; border: 0; border-radius: 8px; padding: 12px; font-weight: 600; }
+    [hidden] { display: none !important; }
+    .toast { position: fixed; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--navy); color: #fff; padding: 10px 16px; border-radius: 999px; box-shadow: 0 6px 18px rgba(0,0,0,.25); font-weight: 600; z-index: 20; }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <img src="logo.jpg" alt="" />
+    <h1><small>Panel de reservas</small>Puerta del Edén</h1>
+    <button class="icon-btn" id="btnAvisos" type="button" title="Sonido al entrar una reserva">🔕 Avisos</button>
+    <button class="icon-btn" id="btnSalir" type="button" hidden>Salir</button>
+  </header>
+  <div class="demo" id="demoBar" hidden>Modo demo: las reservas se guardan solo en este dispositivo.</div>
+
+  <section class="login" id="vLogin" hidden>
+    <h2>Acceso restaurante</h2>
+    <form id="fLogin">
+      <input type="email" name="email" placeholder="Correo" required autocomplete="username" />
+      <input type="password" name="password" placeholder="Contraseña" required autocomplete="current-password" />
+      <p class="err" id="loginErr"></p>
+      <button type="submit">Entrar</button>
+    </form>
+  </section>
+
+  <main class="wrap" id="vPanel" hidden>
+    <div class="tabs" role="tablist">
+      <button class="tab on" data-v="hoy" type="button">Hoy <span class="n" id="nHoy"></span></button>
+      <button class="tab" data-v="prox" type="button">Próximas <span class="n" id="nProx"></span></button>
+      <button class="tab" data-v="todas" type="button">Historial</button>
+    </div>
+    <p class="err" id="panelErr"></p>
+    <div id="lista"></div>
+  </main>
+
+  <script src="config.js"></script>
+  <script src="reservas.js"></script>
+  <script>
+    const $ = s => document.querySelector(s);
+    const cfg = window.RESERVAS_CONFIG;
+    let vista = "hoy", reservas = [], pendientesAntes = null, avisos = false, audio = null;
+
+    const hoyISO = () => { const d = new Date(); d.setMinutes(d.getMinutes() - d.getTimezoneOffset()); return d.toISOString().slice(0, 10); };
+    const fechaLarga = iso => new Date(iso + "T12:00:00").toLocaleDateString("es-ES", { weekday: "long", day: "numeric", month: "long" });
+    const fechaCorta = iso => iso.split("-").reverse().join("/");
+    const esc = t => String(t ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    const telLink = t => (t.startsWith("+") ? t : "+34" + t);
+
+    function toast(msg) {
+      const t = document.createElement("div"); t.className = "toast"; t.textContent = msg;
+      document.body.appendChild(t); setTimeout(() => t.remove(), 2200);
+    }
+
+    function pitido() {
+      if (!avisos || !audio) return;
+      [0, 0.25].forEach(delay => {
+        const o = audio.createOscillator(), g = audio.createGain();
+        o.frequency.value = 880; o.connect(g); g.connect(audio.destination);
+        g.gain.setValueAtTime(0.25, audio.currentTime + delay);
+        g.gain.exponentialRampToValueAtTime(0.001, audio.currentTime + delay + 0.2);
+        o.start(audio.currentTime + delay); o.stop(audio.currentTime + delay + 0.22);
+      });
+    }
+
+    function smsConfirmacion(r) {
+      const texto = `Hola ${r.nombre}, te confirmamos tu reserva en ${cfg.restaurante} para ${r.personas} ${r.personas === "1" ? "persona" : "personas"} el ${fechaCorta(r.fecha)} a las ${r.hora}. ¡Te esperamos! Tel. ${cfg.telefono}`;
+      return `sms:${telLink(r.telefono)}?&body=${encodeURIComponent(texto)}`;
+    }
+
+    function tarjeta(r) {
+      const notaHTML = r.nota ? `<div class="nota">📝 ${esc(r.nota)}</div>` : "";
+      let acciones = "";
+      if (r.estado === "pendiente") {
+        acciones = `<button class="si" data-a="confirmada" data-id="${esc(r.id)}">✓ Confirmar</button>
+                    <button class="no" data-a="rechazada" data-id="${esc(r.id)}">✕ Rechazar</button>`;
+      } else if (r.estado === "confirmada") {
+        acciones = `<a href="${smsConfirmacion(r)}">💬 Enviar SMS de confirmación</a>
+                    <button data-a="pendiente" data-id="${esc(r.id)}">Deshacer</button>`;
+      } else {
+        acciones = `<button data-a="pendiente" data-id="${esc(r.id)}">Deshacer</button>`;
+      }
+      return `<article class="res ${esc(r.estado)}">
+        <div class="row">
+          <div class="hora">${esc(r.hora)}</div>
+          <div class="who"><b>${esc(r.nombre)}</b><small>${esc(r.personas)} pers. · ${esc(r.telefono)}</small></div>
+          <span class="est ${esc(r.estado)}">${esc(r.estado)}</span>
+        </div>
+        ${notaHTML}
+        <div class="acts"><a href="tel:${esc(telLink(r.telefono))}">📞 Llamar</a>${acciones}</div>
+      </article>`;
+    }
+
+    function pintar() {
+      const hoy = hoyISO();
+      const pendHoy = reservas.filter(r => r.fecha === hoy && r.estado === "pendiente").length;
+      const pendProx = reservas.filter(r => r.fecha > hoy && r.estado === "pendiente").length;
+      $("#nHoy").textContent = pendHoy || "";
+      $("#nProx").textContent = pendProx || "";
+      document.title = (pendHoy + pendProx ? `(${pendHoy + pendProx}) ` : "") + "Reservas · Puerta del Edén";
+
+      let lista = reservas;
+      if (vista === "hoy") lista = reservas.filter(r => r.fecha === hoy);
+      if (vista === "prox") lista = reservas.filter(r => r.fecha > hoy);
+      if (vista === "todas") lista = [...reservas].reverse();
+
+      if (!lista.length) {
+        $("#lista").innerHTML = `<p class="empty">${vista === "hoy" ? "No hay reservas para hoy." : "No hay reservas."}</p>`;
+        return;
+      }
+      const grupos = {};
+      lista.forEach(r => (grupos[r.fecha] = grupos[r.fecha] || []).push(r));
+      $("#lista").innerHTML = Object.entries(grupos).map(([f, rs]) => {
+        const pers = rs.filter(r => r.estado !== "rechazada").reduce((n, r) => n + (parseInt(r.personas, 10) || 0), 0);
+        return `<div class="day">${f === hoy ? "Hoy" : fechaLarga(f)} <span>${rs.length} ${rs.length === 1 ? "reserva" : "reservas"} · ${pers} pers.</span></div>` + rs.map(tarjeta).join("");
+      }).join("");
+    }
+
+    async function cargar() {
+      try {
+        // Historial: todo; Hoy/Próximas: desde hoy
+        reservas = await Reservas.listar(vista === "todas" ? null : hoyISO());
+        $("#panelErr").textContent = "";
+        const pend = reservas.filter(r => r.estado === "pendiente").length;
+        if (pendientesAntes !== null && pend > pendientesAntes) { pitido(); toast("Nueva reserva"); }
+        pendientesAntes = pend;
+        pintar();
+      } catch (e) {
+        $("#panelErr").textContent = e.message;
+      }
+    }
+
+    $("#lista").addEventListener("click", async e => {
+      const b = e.target.closest("button[data-a]");
+      if (!b) return;
+      if (b.dataset.a === "rechazada" && !confirm("¿Rechazar esta reserva?")) return;
+      b.disabled = true;
+      try {
+        await Reservas.cambiarEstado(b.dataset.id, b.dataset.a);
+        pendientesAntes = null; // no pitar por un cambio propio
+        await cargar();
+        if (b.dataset.a === "confirmada") toast("Confirmada · avísale por SMS o llamada");
+      } catch (err) { $("#panelErr").textContent = err.message; b.disabled = false; }
+    });
+
+    document.querySelectorAll(".tab").forEach(t => t.addEventListener("click", () => {
+      document.querySelectorAll(".tab").forEach(x => x.classList.toggle("on", x === t));
+      vista = t.dataset.v; pendientesAntes = null; cargar();
+    }));
+
+    $("#btnAvisos").addEventListener("click", () => {
+      avisos = !avisos;
+      if (avisos && !audio) audio = new (window.AudioContext || window.webkitAudioContext)();
+      $("#btnAvisos").textContent = avisos ? "🔔 Avisos" : "🔕 Avisos";
+      if (avisos) { pitido(); toast("Sonará al entrar una reserva"); }
+    });
+
+    async function mostrarPanel() {
+      $("#vLogin").hidden = true; $("#vPanel").hidden = false;
+      $("#btnSalir").hidden = Reservas.demo;
+      await cargar();
+      Reservas.escuchar(cargar);
+      setInterval(cargar, 30000); // por si falla el aviso en tiempo real
+      document.addEventListener("visibilitychange", () => { if (!document.hidden) cargar(); });
+    }
+
+    $("#fLogin").addEventListener("submit", async e => {
+      e.preventDefault();
+      const d = Object.fromEntries(new FormData(e.target));
+      $("#loginErr").textContent = "";
+      try { await Reservas.entrar(d.email, d.password); mostrarPanel(); }
+      catch (err) { $("#loginErr").textContent = err.message; }
+    });
+
+    $("#btnSalir").addEventListener("click", async () => { await Reservas.salir(); location.reload(); });
+
+    (async () => {
+      $("#demoBar").hidden = !Reservas.demo;
+      try {
+        const s = await Reservas.sesion();
+        if (s) mostrarPanel(); else $("#vLogin").hidden = false;
+      } catch (e) {
+        $("#vLogin").hidden = false; $("#loginErr").textContent = e.message;
+      }
+    })();
+  </script>
+</body>
+</html>
